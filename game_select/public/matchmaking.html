@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matchmaking Stats</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #631a86, #ff6933);
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .main-container {
+            display: flex;
+            justify-content: space-between;
+            width: 80%;
+            max-width: 1200px;
+            height: 70%;
+        }
+
+        /* Right Side (User Stats) */
+        .user-stats-container {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            margin-left: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: #ffb347;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        .stats {
+            font-size: 1.2rem;
+            margin: 10px 0;
+            padding: 12px;
+            background-color: rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        .stats:hover {
+            background-color: rgba(0, 0, 0, 0.4);
+            transform: scale(1.05);
+        }
+
+        .button {
+            background-color: #ff6933;
+            color: #fff;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            position: absolute;
+            bottom: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .button:hover {
+            background-color: #e85d29;
+            transform: translateX(-50%) scale(1.05);
+        }
+
+        /* Left Side (Similar Profiles) */
+        .profiles-container {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            margin-right: 20px;
+            overflow-y: auto;
+            max-height: 100%;
+        }
+
+        .profile {
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            text-align: center;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .profile:hover {
+            background-color: rgba(255, 255, 255, 0.4);
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <!-- Left Side: Similar Profiles -->
+        <div class="profiles-container">
+            <div class="profile">User 1</div>
+            <div class="profile">User 2</div>
+            <div class="profile">User 3</div>
+            <div class="profile">User 4</div>
+            <div class="profile">User 5</div>
+        </div>
+
+        <!-- Right Side: User Stats -->
+        <div class="user-stats-container">
+            <h1>Stats Display</h1>
+            <div class="stats">Name:</div>
+            <div class="stats">Rank:</div>
+            <div class="stats">Kills:</div>
+            <div class="stats">Deaths:</div>
+            <div class="stats">Assists:</div>
+            <button class="button">LET'S DO MATCHMAKING!</button>
+        </div>
+    </div>
+</body>
+</html>
