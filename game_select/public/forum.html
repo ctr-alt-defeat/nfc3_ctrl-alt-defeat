@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Forum</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #f5f7fa, #e8eaf6);
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+        }
+
+        .forum-container {
+            background: white;
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border-top: 5px solid #631a86;
+        }
+
+        .forum-container h1 {
+            text-align: center;
+            color: #631a86;
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        .post-list {
+            list-style-type: none;
+            padding: 0;
+            margin: 20px 0;
+        }
+
+        .post-item {
+            background: #f5f7fa;
+            padding: 20px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border-left: 5px solid #631a86;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .post-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .post-title {
+            font-size: 20px;
+            margin: 0 0 10px;
+            color: #631a86;
+        }
+
+        .post-content {
+            font-size: 16px;
+            color: #555;
+        }
+
+        .create-post-section {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        #create-post-btn {
+            padding: 12px 24px;
+            background-color: #ff6933;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+        }
+
+        #create-post-btn:hover {
+            background-color: #d9531e;
+        }
+
+        #post-form {
+            display: none;
+            margin-top: 20px;
+            background-color: #f5f7fa;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        #post-form h2 {
+            margin-top: 0;
+            color: #631a86;
+        }
+
+        #post-form input, #post-form textarea {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        #post-form button {
+            padding: 12px 24px;
+            background-color: #631a86;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+        }
+
+        #post-form button:hover {
+            background-color: #4a1061;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="forum-container">
+        <h1>Modern Forum</h1>
+        <ul class="post-list" id="post-list">
+            <!-- Existing posts will be listed here -->
+        </ul>
+
+        <div class="create-post-section">
+            <button id="create-post-btn">Create New Post</button>
+            <form id="post-form">
+                <h2>Create a New Post</h2>
+                <input type="text" id="post-title" placeholder="Title" required>
+                <textarea id="post-content" placeholder="Content" rows="5" required></textarea>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("create-post-btn").addEventListener("click", function() {
+            document.getElementById("post-form").style.display = "block";
+        });
+
+        document.getElementById("post-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            // Get the input values
+            var title = document.getElementById("post-title").value;
+            var content = document.getElementById("post-content").value;
+
+            // Create a new post item
+            var postList = document.getElementById("post-list");
+            var newPost = document.createElement("li");
+            newPost.className = "post-item";
+            newPost.innerHTML = `<h3 class="post-title">${title}</h3><p class="post-content">${content}</p>`;
+            
+            // Add the new post to the list
+            postList.appendChild(newPost);
+
+            // Reset the form and hide it
+            document.getElementById("post-form").reset();
+            document.getElementById("post-form").style.display = "none";
+        });
+    </script>
+
+</body>
+</html>
