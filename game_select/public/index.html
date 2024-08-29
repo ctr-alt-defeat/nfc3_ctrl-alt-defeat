@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stats Display</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #2c003e, #631a86, #ff6933); /* Deep Purple to Orange gradient */
+            background-size: 400% 400%; 
+            animation: gradientAnimation 10s ease infinite;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .stats-container {
+            background: rgba(255, 255, 255, 0.1); /* Slight transparency */
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #ffb347; /* Soft Orange */
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            margin: 10px 0;
+            padding: 10px;
+            background-color: rgba(0, 0, 0, 0.2); /* Slightly darker background */
+            border-radius: 8px;
+        }
+
+        .matchmaking-button {
+            margin-top: 20px;
+            padding: 12px 20px;
+            font-size: 1rem;
+            color: #fff;
+            background-color: #ff6933; /* Orange background */
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .matchmaking-button:hover {
+            background-color: #e85d29; /* Darker shade of orange */
+            transform: scale(1.05);
+        }
+
+    </style>
+</head>
+<body>
+    <div class="stats-container">
+        <h1>Stats Display</h1>
+        <h2>Name:</h2>
+        <h2>Rank:</h2>
+        <h2>Kills:</h2>
+        <h2>Deaths:</h2>
+        <h2>Assists:</h2>
+    </div>
+    <button class="matchmaking-button">LETS DO MATCHMAKING!</button>
+</body>
+</html>
+
