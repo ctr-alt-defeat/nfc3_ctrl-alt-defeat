@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="styles.css" />
+  <title>Team Chat</title>
+</head>
+<body>
+  <h1>Team Chat</h1>
+  <input type="text" id="teamId" placeholder="Enter Team ID">
+  <div id="outer-box">
+    <div id="current-time">Current Time: </div>
+    <div id="chat"></div>
+    <div id="input-container">
+      <input type="text" id="message" placeholder="Enter message">
+      <button id="sendMessage">Send</button>
+    </div>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    const socket = io();
+
+    document.getElementById('sendMessage').addEventListener('click', () => {
+      const teamId = document.getElementById('teamId').value;
+      const message = document.getElementById('message').value;
+      socket.emit('message', { teamId, message });
+    });
+
+    socket.on('message', (message) => {
+      const chat = document.getElementById('chat');
+      const currentTime = new Date().toLocaleTimeString();
+      document.getElementById('current-time').innerText = `Current Time: ${currentTime}`;
+      chat.innerHTML += `<div>${message}</div>`;
+      chat.scrollTop = chat.scrollHeight;
+    });
+
+    const teamId = prompt('Enter your team ID');
+    document.getElementById('teamId').value = teamId;
+    socket.emit('join_team', teamId);
+  </script>
+</body>
+</html>
