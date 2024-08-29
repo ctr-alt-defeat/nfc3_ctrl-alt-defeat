@@ -261,11 +261,8 @@
             <div id="csgo-modal" class="modal">
                 <div class="modal-content">
                     <h3>Enter Your CSGO Game Details</h3>
-                    <form id="csgo-form" method="post" action="/submit-game-details">
-                        <input type="text" name="ingame-name" placeholder="Enter Your Name">
-                        <input type="text" name="steam" placeholder="Enter Your Steam ID">
-                        <input type="text" name="ingame-rank" placeholder="Enter Your Rank">
-                        <button type="submit">Submit Now</button>
+                    <form id="csgo-form">
+                        <button type="button" onclick="window.location.href='http://localhost:3000/'">Sign in with Steam</button>
                         <button type="button" id="csgo-close" class="modal-close">Close</button>
                     </form>
                 </div>
