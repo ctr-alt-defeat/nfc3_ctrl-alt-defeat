@@ -48,6 +48,9 @@ app.post('/submit-game-details', async (req,res)=>{
         //get puuid
         // console.log(response.data.data.puuid);
         const puuid = response.data.data.puuid;//puuid id of user
+        const valName = response.data.data.name
+        // console.log(response.data);
+        
         const accountLevel = response.data.data.account_level;
         const response2 = await axios.get(`https://api.henrikdev.xyz/valorant/v1/by-puuid/mmr-history/ap/${puuid}`, {
             headers: {
@@ -80,9 +83,31 @@ app.post('/submit-game-details', async (req,res)=>{
         console.log(accountLevel);
         
 
-        // stored data api
-        await db.query("INSERT INTO valorant(puuid,rank,level,kills,deaths,assists) VALUES ($1,$2,$3,$4,$5,$6)",[puuid,rank,accountLevel,totalKills,totalDeaths,totalAssists]);
-        res.json(response.data); // Send the API response back to the client
+       // Check if the record already exists
+    const result = await db.query("SELECT * FROM valorant WHERE puuid = $1", [puuid]);
+
+    if (result.rows.length > 0) {
+        console.log("Record already exists. Updating existing record...");
+        // Update the existing record instead of inserting a new one
+        await db.query(
+            "UPDATE valorant SET rank=$2, level=$3, kills=$4, deaths=$5, assists=$6 WHERE puuid=$1",
+            [puuid, rank, accountLevel, totalKills, totalDeaths, totalAssists]
+        );
+    } else {
+        // Insert the new record if it doesn't exist
+        await db.query(
+            "INSERT INTO valorant(puuid, rank, level, kills, deaths, assists) VALUES ($1, $2, $3, $4, $5, $6)",
+            [puuid, rank, accountLevel, totalKills, totalDeaths, totalAssists]
+        );
+    }
+    res.render("stats.ejs", {
+        name: valName,
+        rank: rank,
+        kills: totalKills,
+        deaths: totalDeaths,
+        assists: totalAssists
+      });
+    
     } catch (error) {
         console.error('Error fetching data:', error);
         res.status(500).send('An error occurred while fetching data');
