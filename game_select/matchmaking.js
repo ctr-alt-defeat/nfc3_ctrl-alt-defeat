@@ -9,6 +9,11 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
+let rank = "";
+let valName = "";
+let totalKills = 0;
+let totalDeaths = 0;
+let totalAssists = 0;
 
 const db = new pg.Client({
     connectionString: "postgresql://varun:Y6QXvENpg93LA2UsS8earw@yeti-molerat-8089.8nk.gcp-asia-southeast1.cockroachlabs.cloud:26257/gamingFinder?sslmode=verify-full"
@@ -48,7 +53,7 @@ app.post('/submit-game-details', async (req,res)=>{
         //get puuid
         // console.log(response.data.data.puuid);
         const puuid = response.data.data.puuid;//puuid id of user
-        const valName = response.data.data.name
+        valName = response.data.data.name + "#" + response.data.data.tag;
         // console.log(response.data);
         
         const accountLevel = response.data.data.account_level;
@@ -58,7 +63,7 @@ app.post('/submit-game-details', async (req,res)=>{
             }
         });
         // console.log(response2.data.data[0].currenttierpatched);
-        const rank = response2.data.data[0].currenttierpatched;//rank of user
+        rank = response2.data.data[0].currenttierpatched;//rank of user
 
         const response3 = await axios.get(`https://api.henrikdev.xyz/valorant/v1/by-puuid/stored-matches/ap/${puuid}`, {
             headers: {
@@ -68,9 +73,7 @@ app.post('/submit-game-details', async (req,res)=>{
         // const {kills , deaths, assists} = (response3.data.data[0])
         // const data = response3.data;
         
-        let totalKills = 0;
-        let totalDeaths = 0;
-        let totalAssists = 0;
+        
         
         response3.data.data.forEach(game => {
             totalKills += game.stats.kills;
@@ -90,17 +93,18 @@ app.post('/submit-game-details', async (req,res)=>{
         console.log("Record already exists. Updating existing record...");
         // Update the existing record instead of inserting a new one
         await db.query(
-            "UPDATE valorant SET rank=$2, level=$3, kills=$4, deaths=$5, assists=$6 WHERE puuid=$1",
-            [puuid, rank, accountLevel, totalKills, totalDeaths, totalAssists]
+            "UPDATE valorant SET rank=$2, level=$3, kills=$4, deaths=$5, assists=$6, name=$7 WHERE puuid=$1",
+            [puuid, rank, accountLevel, totalKills, totalDeaths, totalAssists,valName]
         );
     } else {
         // Insert the new record if it doesn't exist
         await db.query(
-            "INSERT INTO valorant(puuid, rank, level, kills, deaths, assists) VALUES ($1, $2, $3, $4, $5, $6)",
-            [puuid, rank, accountLevel, totalKills, totalDeaths, totalAssists]
+            "INSERT INTO valorant(puuid, rank, level, kills, deaths, assists, name) VALUES ($1, $2, $3, $4, $5, $6, $7)",
+            [puuid, rank, accountLevel, totalKills, totalDeaths, totalAssists, valName]
         );
     }
     res.render("stats.ejs", {
+        gameType: 'valorant',
         name: valName,
         rank: rank,
         kills: totalKills,
@@ -117,6 +121,24 @@ app.post('/submit-game-details', async (req,res)=>{
     // res.send("Received");
 })
 
+
+app.get('/display-matchmaking',async(req,res)=>{
+    // console.log(rank);
+    const result = rank.split(' ')[0]; // Split the string by space and take the first part
+    console.log(result); // Output: "Gold"
+    const response = await db.query(`SELECT * FROM valorant WHERE rank LIKE $1`, [`${result}%`]);
+    console.log(response.rows);
+    const profiles = response.rows;
+    console.log(valName);
+    
+    res.render("matchmaking.ejs",{profiles : profiles, 
+        gameType: 'valorant',
+        name: valName,
+        rank: rank,
+        kills: totalKills,
+        deaths: totalDeaths,
+        assists: totalAssists})
+})
 
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {
