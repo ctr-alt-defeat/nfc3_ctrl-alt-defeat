@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Squadify</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+</head>
+<body>
+    <nav class="Navbar">
+        <div class="container">
+            <div class="Logo"><img src="/image/logo-removebg-preview.png" alt=""></div>
+
+            <div id="menu" class="menu">
+                <header class="inline">
+                    <div class="Logo"></div>
+                    <button
+                        id="closeMenuBtn"
+                        title="Close Menu"
+                        aria-label="Close Menu"
+                        class="NavButton"
+                    >
+                        <i class="ri-close-line"></i>
+                    </button>
+                </header>
+
+                <a href="#" class="NavLink">Home</a>
+                <a href="/forum.html" class="NavLink">Forums</a>
+
+                <a href="#plans" class="NavLink">Plans</a>
+                <a href="#about" class="NavLink">About</a>
+            </div>
+
+            <button
+                id="openMenuBtn"
+                title="Open Menu"
+                aria-label="Open Menu"
+                class="NavButton"
+            >
+                <i class="ri-menu-line"></i>
+            </button>
+        </div>
+    </nav>
+    <main>
+        <section id="home">
+            <div class="hero">
+                <div class="visual">
+                    <picture>
+                        <source
+                            srcset="/image/man-in-mask.png"
+                            type="image/avif"
+                            media="(width > 1024px)"
+                        />
+                        <img
+                            src="https://raw.githubusercontent.com/mobalti/open-props-interfaces/main/landing-page-with-scroll-driven/assets/images/hero-mobile.webp"
+                            alt="fitness"
+                        />
+                    </picture>
+                </div>
+
+                <div class="content">
+                    <h1>Find your Team!</h1>
+                    <div class="wrapper">
+                        <a href="#discover" class="LinkButton Primary" onclick="window.location.href='http://localhost:3500/'"> SIGN IN NOW </a>
+                    </div>
+                </div>
+            </div>
+
+            <div id="discover" class="fold">
+                <div class="subject">
+                    <p>
+                        It's a new match,
+                        <span style="color: var(--brand-1)"> a new chance to level up your skills. Embrace the challenge, feel the rush,</span>
+                        and dominate the game with unyielding determination.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="schedules" class="schedule">
+            <div class="subject">
+                <div class="container">
+                    <div class="table-wrapper">
+                        <h2>Upcoming Valorant Tournaments</h2>
+                        <table>
+                            <tr>
+                                <th>Day</th>
+                                <th>Event</th>
+                                <th>Time</th>
+                            </tr>
+                            <tr>
+                                <td>Monday</td>
+                                <td>SAMSUNG VALORANT bogota championship</td>
+                                <td>6:00 AM</td>
+                            </tr>
+                            <tr>
+                                <td>Tuesday</td>
+                                <td>Wolvesden Valo Tournament</td>
+                                <td>7:00 AM</td>
+                            </tr>
+                            <tr>
+                                <td>Wednesday</td>
+                                <td>Bleached 1v1 Swiftplays</td>
+                                <td>6:30 AM</td>
+                            </tr>
+                            <tr>
+                                <td>Thursday</td>
+                                <td>Gekko's gambit</td>
+                                <td>6:00 AM</td>
+                            </tr>
+                            <tr>
+                                <td>Friday</td>
+                                <td>Deadlock's Draft</td>
+                                <td>8:00 AM</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="table-wrapper">
+                        <h2>Upcoming CSGO Tournaments</h2>
+                        <table>
+                            <tr>
+                                <th>Event</th>
+                                <th>Price Pool</th>
+                            </tr>
+                            <tr>
+                                <td>CCT season 2 south america series 3</td>
+                                <td>$20,000</td>
+                            </tr>
+                            <tr>
+                                <td>CCT season 2 europe series 11 closed qualifier</td>
+                                <td>$15,000</td>
+                            </tr>
+                            <tr>
+                                <td>Blast Premier fall final 2024</td>
+                                <td>$425,000</td>
+                            </tr>
+                            <tr>
+                                <td>ESL Pro league season 20</td>
+                                <td>$750,000</td>
+                            </tr>
+                            <tr>
+                                <td>Betboom Dacha Belgrade season 2</td>
+                                <td>$500,000</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="showcase">
+                <video autoplay loop muted poster="/image/team-halo.png" role="none">
+                    <source src="https://giphy.com/embed/0Vwk6f9ycy5B60gQMZ" type="gifs" />
+                </video>
+                <img src="https://raw.githubusercontent.com/mobalti/open-props-interfaces/main/landing-page-with-scroll-driven/assets/images/rhythm.png" alt="Rhythm" />
+            </div>
+        </section>
+
+        <section id="plans" class="cards">
+            <div class="subject">
+                <h3 style="position: relative; top: 90px; left: 70px;">Blogs</h3>
+                <div class="container">
+                    <a href="<%= personalBests[0].url %>" class="Card" target="_blank">
+                        <div>
+                            <img src="<%= personalBests[0].urlToImage %>" alt="Personal Bests Image" style="width: 100%; height: auto;">
+                            <p><%= personalBests[0].title %></p>
+                        </div>
+                    </a>
+                    <a href="<%= personalBests[1].url %>" class="Card" target="_blank">
+                        <div>
+                            <img src="<%= personalBests[1].urlToImage %>" alt="Challenges Image" style="width: 100%; height: auto;">
+                            <p><%= personalBests[1].title %></p>
+                        </div>
+                    </a>
+                    <a href="<%= personalBests[2].url %>" class="Card" target="_blank">
+                        <div>
+                            <img src="<%= personalBests[2].urlToImage %>" alt="Friends Activity Image" style="width: 100%; height: auto;">
+                            <p><%= personalBests[2].title %></p>
+                        </div>
+                    </a>
+                </div>
+                
+                
+            </div>
+        </section>
+
+        <section id="about" class="about">
+            <div id="target-word">love</div>
+            <footer>
+                <p>
+                    Copyrights &copy; 2024 <a href="#">Squadify</a>, built with
+                    <a href="https://codepen.io/mobalti" style="color: var(--brand-1); text-decoration: none">Love</a>
+                    All rights reserved.
+                </p>
+            </footer>
+        </section>
+    </main>
+    <script src="/js/app.js"></script>
+</body>
+</html>

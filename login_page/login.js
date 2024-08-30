@@ -47,7 +47,7 @@ app.post('/signup', async (req, res) => {
         db.query("INSERT INTO users (name,email,password) VALUES ($1,$2,$3)",[name,email,hash]);
     });
 
-    res.send('Sign up data received!');
+    res.redirect('/')
 });
 
 app.post('/signin', async (req, res) => {
