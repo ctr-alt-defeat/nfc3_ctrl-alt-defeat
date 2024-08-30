@@ -110,6 +110,26 @@
             background-color: rgba(255, 255, 255, 0.4);
             transform: scale(1.05);
         }
+        .matchmaking-button {
+            position: absolute;
+            top: 550px;
+            right: 350px;
+            margin-top: 20px;
+            padding: 12px 20px;
+            font-size: 1rem;
+            color: #fff;
+            background-color: #ff6933; /* Orange background */
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .matchmaking-button:hover {
+            background-color: #e85d29; /* Darker shade of orange */
+            transform: scale(1.05);
+        }
     </style>
 </head>
 <body>
@@ -151,5 +171,6 @@
 
         </div>
     </div>
+    <button class="matchmaking-button" onclick="window.location.replace('http://localhost:4500')">HOME</button>
 </body>
 </html>
