@@ -43,7 +43,7 @@ app.post('/submit-game-details', async (req,res)=>{
     console.log(name);
     console.log(tag);
     
-    const apiKey = "HDEV-fc39bf10-7f07-4781-bde3-40d7f474866a";
+    const apiKey = "";
     try {
         const response = await axios.get(`https://api.henrikdev.xyz/valorant/v1/account/${name}/${tag}`, {
             headers: {
