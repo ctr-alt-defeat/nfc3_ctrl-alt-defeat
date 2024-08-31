@@ -24,7 +24,7 @@ const db = new pg.Client({
   })
   db.connect();
 
-const apiKey = "2275D916F89C38399BEFF3DD01B0E0C1";
+const apiKey = "";
 let totalKills
     let totalDeaths
     let minsPlayed
