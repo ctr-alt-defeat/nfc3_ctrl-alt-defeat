@@ -7,7 +7,7 @@ app.use(express.json());
 // Serve static files from the "public" directory
 app.use(express.static('public'));
 
-let apiKey = "a278e6e2a2c74017bf41e600428e918d";
+let apiKey = "";
 
 app.get('/',async (req,res)=>{
     const news = await axios.get(`https://newsapi.org/v2/everything?q=valorant&apiKey=a278e6e2a2c74017bf41e600428e918d`, {
