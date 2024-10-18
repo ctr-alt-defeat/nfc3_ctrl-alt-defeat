@@ -10,7 +10,7 @@ const saltRounds = 10;
 const db = new pg.Client({
     connectionString: "postgresql://varun:Y6QXvENpg93LA2UsS8earw@yeti-molerat-8089.8nk.gcp-asia-southeast1.cockroachlabs.cloud:26257/gamingFinder?sslmode=verify-full"
   })
-  db.connect();
+db.connect();
 
 // Middleware setup
 app.use(express.urlencoded({ extended: true }));
